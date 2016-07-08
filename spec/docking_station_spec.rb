@@ -2,8 +2,14 @@ require "docking_station"
 
 describe DockingStation do
 
-  it 'has a default capacity' do
-    expect(subject.capacity).to eq subject.capacity
+  it 'has a default capacity if no argument is passed' do
+    station = DockingStation.new
+    expect(station.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
+
+  it 'can have a variable capacity' do
+    station = DockingStation.new(50)
+    expect(station.capacity).to eq 50
   end
 
   describe '#dock' do
@@ -14,7 +20,6 @@ describe DockingStation do
     it 'raises an error when full' do
       subject.capacity.times {subject.dock(Bike.new)}
       expect {subject.dock(Bike.new)}.to raise_error "Docking station full"
-
     end
   end
 
