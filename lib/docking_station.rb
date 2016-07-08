@@ -20,6 +20,10 @@ class DockingStation
     bikes << bike
   end
 
+  def broken_bikes
+    bikes.select { |bike| bike.broken? }
+  end
+
 private
 
   attr_reader :bikes
